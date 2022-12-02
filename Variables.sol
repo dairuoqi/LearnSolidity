@@ -7,7 +7,6 @@ pragma solidity ^0.8.10;
  3. 全局变量
  */
 
-
 contract Variables {
     // 状态变量 : 会被真实存储在链上
     uint public num = 123;
