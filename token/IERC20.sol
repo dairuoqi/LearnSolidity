@@ -21,12 +21,12 @@ interface IERC20 {
 
     // Allows _spender to withdraw from your account multiple times, up to the _value amount. If this function is called again it overwrites the current allowance with _value.
     function approve(address _spender, uint256 _value) external returns (bool);
+    
     /*
     Transfers _value amount of tokens from address _from to address _to, and MUST fire the Transfer event.
     The transferFrom method is used for a withdraw workflow, allowing contracts to transfer tokens on your behalf. This can be used for example to allow a contract to transfer tokens on your behalf and/or to charge fees in sub-currencies. The function SHOULD throw unless the _from account has deliberately authorized the sender of the message via some mechanism.
     Note Transfers of 0 values MUST be treated as normal transfers and fire the Transfer event.
     */
-
     function transferFrom(address _from, address _to, uint256 _value) external returns (bool);
     // MUST trigger when tokens are transferred, including zero value transfers.
     // A token contract which creates new tokens SHOULD trigger a Transfer event with the _from address set to 0x0 when tokens are created.

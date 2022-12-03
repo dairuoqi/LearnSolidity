@@ -74,18 +74,25 @@ contract ERC20 is IERC20, IERC20Metadata {
     }
 
 
-    function _approve (address _owner, address _spender, uint256 _value) internal virtual {
+    function _approve(address _owner, address _spender, uint256 _value) internal virtual {
         require(_owner != address(0), "ERC20: approve from the zero address");
         require(_spender != address(0), "ERC20: approve to the zero address");
         _allowances[_owner][_spender] = _value;
         emit Approval(_owner, _spender, _value);
     }
     
-    function _spendAllowance(address _owner, address _spender, uint256 _value) internal virtual{
+    function _spendAllowance(address _owner, address _spender, uint256 _value) internal virtual {
         uint256 currentAllowance = allowance(_owner, _spender);
         if (currentAllowance != type(uint256).max) {
             require(currentAllowance >= _value, "ERC20: insufficient allowance");
             _approve(_owner, _spender, _value);
         }
+    }
+
+    function _mint(address _account, uint256 _value) internal virtual {
+        require(_account != address(0), "ERC20: mint to the zero address");
+        _totalSupply += _value;
+        _balances[_account] = _value;
+        emit Transfer(address(0), _account, _value);
     }
 }
