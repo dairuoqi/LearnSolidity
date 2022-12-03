@@ -95,4 +95,13 @@ contract ERC20 is IERC20, IERC20Metadata {
         _balances[_account] = _value;
         emit Transfer(address(0), _account, _value);
     }
+
+    function _burn(address _account, uint256 _value) internal virtual {
+        require(_account != address(0), "ERC20: burn from the zero address");
+        uint256 accountBalance = _balances[_account];
+        require(accountBalance >= _value, "ERC20: burn amount exceeds balance");
+        _balances[_account] = accountBalance - _value;
+        _totalSupply -= _value;
+        emit Transfer(_account, address(0), _value);
+    }
 }
