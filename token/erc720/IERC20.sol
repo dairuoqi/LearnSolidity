@@ -28,6 +28,7 @@ interface IERC20 {
     Note Transfers of 0 values MUST be treated as normal transfers and fire the Transfer event.
     */
     function transferFrom(address _from, address _to, uint256 _value) external returns (bool);
+   
     // MUST trigger when tokens are transferred, including zero value transfers.
     // A token contract which creates new tokens SHOULD trigger a Transfer event with the _from address set to 0x0 when tokens are created.
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
