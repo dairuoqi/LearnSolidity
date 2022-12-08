@@ -2,7 +2,7 @@
 pragma solidity ^0.8.10;
 import "./IERC721.sol";
 
-contract IERC721Metadata is IERC721 {
+interface IERC721Metadata is IERC721 {
 
     function name() external view returns (string memory);
 
