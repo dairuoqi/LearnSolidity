@@ -286,7 +286,7 @@ contract ERC721 is ERC165, IERC721, IERC721Metadata {
      */
     function _mint(address to, uint256 tokenId) internal virtual {
         require(to != address(0), "ERC721: mint to the zero address");
-        require(_owners[tokenId] != address(0), "ERC721: token already minted");
+        require(_owners[tokenId] == address(0), "ERC721: token already minted");
         _balances[to] += 1;
         _owners[tokenId] = to;
         emit Transfer(address(0), to, tokenId);
