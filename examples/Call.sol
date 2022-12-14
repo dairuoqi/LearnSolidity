@@ -7,7 +7,7 @@ contract TestCall {
     uint public x;
 
     event Log(string message);
-    
+
     receive() external payable {
         emit Log("fallback was called");
     }
@@ -25,11 +25,13 @@ contract Call {
     bytes public data;
 
     function callFoo(address contractAddr) external payable {
-        (bool success, bytes memory _data) = contractAddr.call{value: 111}(abi.encodeWithSignature(
-            "foo(string,uint256)", 
-            "call foo", 
-            123
-        ));
+        (bool success, bytes memory _data) = contractAddr.call{value: 111}(
+            abi.encodeWithSignature(
+                "foo(string,uint256)", 
+                "call foo", 
+                123
+            )
+        );
         require(success, "call failed");
         data = _data;
     }
